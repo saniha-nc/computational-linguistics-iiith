@@ -37,9 +37,33 @@ function quizzes(){
 	document.getElementById("para1").innerHTML = "Which of these is a valid sentence?<ol><li>Ram came after lunch.</li><li>Ram came after having lunch.</li><li>Sleeping I saw a tiger.</li><li>I saw a sleeping tiger.</li><li>No Parking is allowed.</li></ol><br>";
 	document.getElementById("para2").innerHTML = "<ol><li>खाते खाते राम सो गया</li><li>राम खाते खाते सो गया</li><li>राम खाता खाते सो गया</li><li>राम खाकर सो गया</li><li>राम और श्याम ने भी खाना खाया</li><li>राम ने और श्याम भी खाना खाया</li></ol>";
 }
+function dropexp(){
+	var a = document.getElementById('drop').value;
+	if(a == 'select'){
+		document.getElementById("para1").innerHTML = "";
+		document.getElementById("para2").innerHTML = "";
+	}
+	if(a == 'english'){
+	document.getElementById("para1").style.color = "darkblue";
+	document.getElementById("para1").style.textAlign = "center";
+	document.getElementById("para2").style.color = "blue";
+	document.getElementById("para2").style.textAlign = "center";
+	document.getElementById("para1").innerHTML = "<br><br><b>Form a sentence (Declarative or Interrogative or any other type) from the given words</b>";
+	document.getElementById("para2").innerHTML = "<i>(select the buttons in proper order)</i>";
+	}
+	if(a == 'hindi'){
+	document.getElementById("para1").style.color = "darkblue";
+	document.getElementById("para1").style.textAlign = "center";
+	document.getElementById("para2").style.color = "blue";
+	document.getElementById("para2").style.textAlign = "center";
+	document.getElementById("para1").innerHTML = "<br><br><b>Form a sentence (Declarative or Interrogative or any other type) from the given words</b>";
+	document.getElementById("para2").innerHTML = "<i>(select the buttons in proper order)</i>";
+	}
+}
 function experiment(){
 	document.getElementById("s3").innerHTML = "Experiment";
-	document.getElementById("para1").innerHTML = ""; 
+	document.getElementById("dropdown").innerHTML = "<select id='drop' onchange='dropexp();'><option value='select'>---Select Language--- </option><option value='english'>English</option><option value='hindi'>Hindi</option></select>"; 
+	document.getElementById("para1").innerHTML = "";
 	document.getElementById("para2").innerHTML = "";
 }
 function procedure(){
@@ -47,3 +71,4 @@ function procedure(){
 	document.getElementById("para1").innerHTML = "<u><b>STEP 1:</b></u> Select a language which you know better<br><u><b>STEP 2:</b></u> Select the buttons which has words written on it, in a proper order<br><u><b>OUTPUT:</b></u> Group of words in a selected order will be shown";
 	document.getElementById("para2").innerHTML = "<u><b>NOTE:</b></u><br><ol><li>If a wrong sentence is formed,<button> Re-form the sentence </button> is available for re-setting.</li><li>You can check whether the formed sentence is a valid or not by clicking <button> Check the correctness of this sentence  </button></li><li>For a wrong sentence, you can get the correct sentence by clicking <button> Get correct sentence</button></li></ol>";
 }
+

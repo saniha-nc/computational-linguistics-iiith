@@ -22,6 +22,8 @@ var sentence2 = [["राम और श्याम बाजार गयें
 ["एक लाल किताब वहाँ है", "एक लाल किताब है वहाँ", "वहाँ है एक लाल किताब", "है वहाँ एक लाल किताब"],
 ["एक बड़ी सी किताब वहाँ है", "एक बड़ी सी किताब है वहाँ", "बड़ी सी एक किताब वहाँ है", " बड़ी सी एक किताब है वहाँ", "वहाँ है एक बड़ी सी किताब", "वहाँ है बड़ी सी एक किताब", " है वहाँ एक बड़ी सी किताब", "है वहाँ बड़ी सी एक किताब"]];
 
+var x;
+var n;
 function intro(){
 	document.getElementById("s3").innerHTML = "Introduction";
 	document.getElementById("para1").innerHTML = "A sentence can become more complex, if more than one verb is present or by joining two sentences or words using conjunctions or by some other methods.";
@@ -70,6 +72,17 @@ function quizzes(){
 	document.getElementById("san2").innerHTML = "";
 	document.getElementById("reform").innerHTML = "";
 }
+function reform(){
+	var i = 0;
+	while(i<=n){
+		document.getElementById('button'+i).style.display = "";
+		i++;
+	}
+	wordstring = "";
+	document.getElementById("san2").innerHTML = wordstring;
+	document.getElementById("reform").innerHTML = "";
+	document.getElementById("san1").innerHTML = "";
+}
 var wordstring = "";
 function answer(id,value){
 	document.getElementById("san2").style.textAlign = "center";
@@ -80,8 +93,7 @@ function answer(id,value){
 	wordstring += " ";
 	document.getElementById("san2").innerHTML = wordstring;
 	document.getElementById(id).style.display = "none";
-	document.getElementById("reform").innerHTML = "<center><button id='re'>Re-form the Sentence</button></center>";
-
+	document.getElementById("reform").innerHTML = "<center><button id='re' onclick='reform();'>Re-form the Sentence</button></center>";
 }
 function dropexp(){
 	var a = document.getElementById('drop').value;
@@ -107,7 +119,9 @@ function dropexp(){
 		var ran1 = Math.floor(Math.random() * 9);
 		var sent = sentence1[ran1][0];
 		var shuf = sent.split(" ");
-		var x = shuf.length, temp, sp;
+	    x = shuf.length;
+	    n = shuf.length-1;
+	    var  temp, sp;
 		while(0!==x){
 			sp = Math.floor(Math.random()*x);
 			x -= 1;
@@ -141,7 +155,9 @@ function dropexp(){
 		var ran2 = Math.floor(Math.random() * 6);
 		var sent = sentence2[ran2][0];
 		var shuf = sent.split(" ");
-		var x = shuf.length, temp, sp;
+		x = shuf.length;
+		n = shuf.length-1;
+	    var  temp, sp;
 		while(0!==x){
 			sp = Math.floor(Math.random()*x);
 			x -= 1;

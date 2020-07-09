@@ -71,6 +71,7 @@ h1{
 .mid .list button:focus{
 	background-color: #0e6c9c;
 	color: white;
+	padding-bottom: 10px;
 }
 .mid .whitebg #dropdown{
 	text-align: center;

@@ -105,7 +105,6 @@ function hideanswerlist(){
 }
 function getanswerlist(){
 	anslist = "";
-	answers.innerHTML = "";
 	var total = 0;
 	if(a == 'english'){
 		total = sentence1[ran].length-1;
@@ -151,6 +150,8 @@ function reform(){
 	document.getElementById("checkcorrect").innerHTML = "";
 	document.getElementById("fin").innerHTML = "";
 	totalclicks = 0;
+	anslist = "";
+	answers.innerHTML = "";
 }
 function answer(id,value){
 	document.getElementById("san2").style.textAlign = "center";

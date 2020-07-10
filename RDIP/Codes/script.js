@@ -93,9 +93,9 @@ function result(){
 		final = sentence2[ran].includes(ws);
 	}
 	if(final)
-		document.getElementById("fin").innerHTML = "<center><font color ='green'>Right Answer!!!</font></center>";
+		document.getElementById("fin").innerHTML = "<center><font color ='green'>Right Answer!!!</font><br><button id='correctbut'>Get Correct Sentence</button></center>";
 	else
-		document.getElementById("fin").innerHTML = "<center><font color ='red'>Wrong Answer!!!</font></center>";
+		document.getElementById("fin").innerHTML = "<center><font color ='red'>Wrong Answer!!!</font><br><button id='correctbut'>Get Correct Sentence</button></center>";
 }
 function reform(){
 	var i = 0;

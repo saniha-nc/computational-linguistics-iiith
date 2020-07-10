@@ -24,6 +24,7 @@ var sentence2 = [["राम और श्याम बाजार गयें
 
 var x;
 var n;
+var buttonlength, totalclicks;
 function intro(){
 	document.getElementById("s3").innerHTML = "Introduction";
 	document.getElementById("para1").innerHTML = "A sentence can become more complex, if more than one verb is present or by joining two sentences or words using conjunctions or by some other methods.";
@@ -35,6 +36,7 @@ function intro(){
 	document.getElementById("san1").innerHTML = "";
 	document.getElementById("san2").innerHTML = "";
 	document.getElementById("reform").innerHTML = "";
+	document.getElementById("checkcorrect").innerHTML = "";
 }
 function viewtheory(){
 	document.getElementById("s3").innerHTML = "Theory";
@@ -47,6 +49,7 @@ function viewtheory(){
 	document.getElementById("san1").innerHTML = "";
 	document.getElementById("san2").innerHTML = "";
 	document.getElementById("reform").innerHTML = "";
+	document.getElementById("checkcorrect").innerHTML = "";
 }
 function viewobjec(){
 	document.getElementById("s3").innerHTML = "Objective";
@@ -59,6 +62,7 @@ function viewobjec(){
 	document.getElementById("san1").innerHTML = "";
 	document.getElementById("san2").innerHTML = "";
 	document.getElementById("reform").innerHTML = "";
+	document.getElementById("checkcorrect").innerHTML = "";
 }
 function quizzes(){
 	document.getElementById("s3").innerHTML = "Quizzes";
@@ -71,6 +75,7 @@ function quizzes(){
 	document.getElementById("san1").innerHTML = "";
 	document.getElementById("san2").innerHTML = "";
 	document.getElementById("reform").innerHTML = "";
+	document.getElementById("checkcorrect").innerHTML = "";
 }
 function reform(){
 	var i = 0;
@@ -82,6 +87,8 @@ function reform(){
 	document.getElementById("san2").innerHTML = wordstring;
 	document.getElementById("reform").innerHTML = "";
 	document.getElementById("san1").innerHTML = "";
+	document.getElementById("checkcorrect").innerHTML = "";
+
 }
 var wordstring = "";
 function answer(id,value){
@@ -94,22 +101,32 @@ function answer(id,value){
 	document.getElementById("san2").innerHTML = wordstring;
 	document.getElementById(id).style.display = "none";
 	document.getElementById("reform").innerHTML = "<center><button id='re' onclick='reform();'>Re-form the Sentence</button></center>";
+	totalclicks ++;
+	if(totalclicks == buttonlength){
+		document.getElementById("checkcorrect").innerHTML = "<center><button id='crct'>Check the correctness of the sentence</button></center>";
+	}
 }
 function dropexp(){
 	var a = document.getElementById('drop').value;
 	if(a == 'select'){
+		buttonlength = 0;
+		totalclicks = 0;
 		document.getElementById("para1").innerHTML = "";
 		document.getElementById("para2").innerHTML = "";
 		document.getElementById("para11").innerHTML = "";
 		document.getElementById("para22").innerHTML = "";
 		document.getElementById("buttons").innerHTML = "";
-		document.getElementById("dropdown").innerHTML = "";
 		document.getElementById("san1").innerHTML = "";
 		document.getElementById("san2").innerHTML = "";
 		document.getElementById("reform").innerHTML = "";
+		document.getElementById("checkcorrect").innerHTML = "";
 	}
 	if(a == 'english'){
 		wordstring = "";
+		document.getElementById("san1").innerHTML = "";
+		document.getElementById("san2").innerHTML = "";
+		document.getElementById("reform").innerHTML = "";
+		document.getElementById("checkcorrect").innerHTML = "";
 		document.getElementById("para11").style.color = "darkblue";
 		document.getElementById("para11").style.textAlign = "center";
 		document.getElementById("para22").style.color = "blue";
@@ -133,11 +150,14 @@ function dropexp(){
 		var finalbtns="";
 		var btns="";
 		var content;
+		buttonlength = 0;
+		totalclicks = 0;
 		while(i<=shuf.length-1){
 			content = shuf[i];
 			btns = "<button id='button"+i+"'onclick='answer(this.id,this.value)' value='"+content+"'>"+content+"</button> &nbsp;&nbsp;";
 			finalbtns += btns;
 			i++;
+			buttonlength++;
 		}
 		document.getElementById("buttons").style.textAlign = "center";
 		document.getElementById("buttons").innerHTML = finalbtns;
@@ -146,6 +166,10 @@ function dropexp(){
 	}
 	if(a == 'hindi'){
 		wordstring = "";
+		document.getElementById("checkcorrect").innerHTML = "";
+		document.getElementById("san1").innerHTML = "";
+		document.getElementById("san2").innerHTML = "";
+		document.getElementById("reform").innerHTML = "";
 		document.getElementById("para11").style.color = "darkblue";
 		document.getElementById("para11").style.textAlign = "center";
 		document.getElementById("para22").style.color = "blue";
@@ -169,11 +193,14 @@ function dropexp(){
 		var finalbtns="";
 		var btns="";
 		var content;
+		buttonlength = 0;
+		totalclicks = 0;
 		while(i<=shuf.length-1){
 			content = shuf[i];
 			btns = "<button id='button"+i+"' onclick='answer(this.id,this.value)' value='"+content+"'>"+content+"</button> &nbsp;&nbsp;";
 			finalbtns += btns;
 			i++;
+			buttonlength++;
 		}
 		document.getElementById("buttons").style.textAlign = "center";
 		document.getElementById("buttons").innerHTML = finalbtns;			
@@ -189,6 +216,7 @@ function experiment(){
 	document.getElementById("san1").innerHTML = "";
 	document.getElementById("san2").innerHTML = "";
 	document.getElementById("reform").innerHTML = "";
+	document.getElementById("checkcorrect").innerHTML = "";
 }
 function procedure(){
 	document.getElementById("s3").innerHTML = "Procedure";
@@ -201,4 +229,5 @@ function procedure(){
 	document.getElementById("san1").innerHTML = "";
 	document.getElementById("san2").innerHTML = "";
 	document.getElementById("reform").innerHTML = "";
+	document.getElementById("checkcorrect").innerHTML = "";
 }

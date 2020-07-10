@@ -22,9 +22,11 @@ var sentence2 = [["राम और श्याम बाजार गयें
 ["एक लाल किताब वहाँ है", "एक लाल किताब है वहाँ", "वहाँ है एक लाल किताब", "है वहाँ एक लाल किताब"],
 ["एक बड़ी सी किताब वहाँ है", "एक बड़ी सी किताब है वहाँ", "बड़ी सी एक किताब वहाँ है", " बड़ी सी एक किताब है वहाँ", "वहाँ है एक बड़ी सी किताब", "वहाँ है बड़ी सी एक किताब", " है वहाँ एक बड़ी सी किताब", "है वहाँ बड़ी सी एक किताब"]];
 
-var x;
+var a;
 var n;
 var buttonlength, totalclicks;
+var wordstring ="";
+var ran;
 function intro(){
 	document.getElementById("s3").innerHTML = "Introduction";
 	document.getElementById("para1").innerHTML = "A sentence can become more complex, if more than one verb is present or by joining two sentences or words using conjunctions or by some other methods.";
@@ -37,6 +39,7 @@ function intro(){
 	document.getElementById("san2").innerHTML = "";
 	document.getElementById("reform").innerHTML = "";
 	document.getElementById("checkcorrect").innerHTML = "";
+	document.getElementById("fin").innerHTML = "";
 }
 function viewtheory(){
 	document.getElementById("s3").innerHTML = "Theory";
@@ -50,6 +53,7 @@ function viewtheory(){
 	document.getElementById("san2").innerHTML = "";
 	document.getElementById("reform").innerHTML = "";
 	document.getElementById("checkcorrect").innerHTML = "";
+	document.getElementById("fin").innerHTML = "";
 }
 function viewobjec(){
 	document.getElementById("s3").innerHTML = "Objective";
@@ -63,6 +67,7 @@ function viewobjec(){
 	document.getElementById("san2").innerHTML = "";
 	document.getElementById("reform").innerHTML = "";
 	document.getElementById("checkcorrect").innerHTML = "";
+	document.getElementById("fin").innerHTML = "";
 }
 function quizzes(){
 	document.getElementById("s3").innerHTML = "Quizzes";
@@ -76,6 +81,21 @@ function quizzes(){
 	document.getElementById("san2").innerHTML = "";
 	document.getElementById("reform").innerHTML = "";
 	document.getElementById("checkcorrect").innerHTML = "";
+	document.getElementById("fin").innerHTML = "";
+}
+function result(){
+	var ws = wordstring.trim();
+	var final;
+	if(a=='english'){
+		final = sentence1[ran].includes(ws);		
+	}
+	else if(a=='hindi'){
+		final = sentence2[ran].includes(ws);
+	}
+	if(final)
+		document.getElementById("fin").innerHTML = "<center><font color ='green'>Right Answer!!!</font></center>";
+	else
+		document.getElementById("fin").innerHTML = "<center><font color ='red'>Wrong Answer!!!</font></center>";
 }
 function reform(){
 	var i = 0;
@@ -88,9 +108,9 @@ function reform(){
 	document.getElementById("reform").innerHTML = "";
 	document.getElementById("san1").innerHTML = "";
 	document.getElementById("checkcorrect").innerHTML = "";
-
+	document.getElementById("fin").innerHTML = "";
+	totalclicks = 0;
 }
-var wordstring = "";
 function answer(id,value){
 	document.getElementById("san2").style.textAlign = "center";
 	document.getElementById("san1").style.textAlign = "center"; 
@@ -103,11 +123,11 @@ function answer(id,value){
 	document.getElementById("reform").innerHTML = "<center><button id='re' onclick='reform();'>Re-form the Sentence</button></center>";
 	totalclicks ++;
 	if(totalclicks == buttonlength){
-		document.getElementById("checkcorrect").innerHTML = "<center><button id='crct'>Check the correctness of the sentence</button></center>";
+		document.getElementById("checkcorrect").innerHTML = "<center><button id='crct' onclick='result();'>Check the correctness of the sentence</button></center>";
 	}
 }
 function dropexp(){
-	var a = document.getElementById('drop').value;
+    a = document.getElementById('drop').value;
 	if(a == 'select'){
 		buttonlength = 0;
 		totalclicks = 0;
@@ -120,9 +140,11 @@ function dropexp(){
 		document.getElementById("san2").innerHTML = "";
 		document.getElementById("reform").innerHTML = "";
 		document.getElementById("checkcorrect").innerHTML = "";
+		document.getElementById("fin").innerHTML = "";
 	}
 	if(a == 'english'){
 		wordstring = "";
+		document.getElementById("fin").innerHTML = "";
 		document.getElementById("san1").innerHTML = "";
 		document.getElementById("san2").innerHTML = "";
 		document.getElementById("reform").innerHTML = "";
@@ -133,8 +155,8 @@ function dropexp(){
 		document.getElementById("para22").style.textAlign = "center";
 		document.getElementById("para11").innerHTML = "<br><br><b>Form a sentence (Declarative or Interrogative or any other type) from the given words</b>";
 		document.getElementById("para22").innerHTML = "<i>(select the buttons in proper order)</i>";
-		var ran1 = Math.floor(Math.random() * 9);
-		var sent = sentence1[ran1][0];
+	    ran = Math.floor(Math.random() * 9);
+		var sent = sentence1[ran][0];
 		var shuf = sent.split(" ");
 	    x = shuf.length;
 	    n = shuf.length-1;
@@ -166,6 +188,7 @@ function dropexp(){
 	}
 	if(a == 'hindi'){
 		wordstring = "";
+		document.getElementById("fin").innerHTML = "";
 		document.getElementById("checkcorrect").innerHTML = "";
 		document.getElementById("san1").innerHTML = "";
 		document.getElementById("san2").innerHTML = "";
@@ -176,8 +199,8 @@ function dropexp(){
 		document.getElementById("para22").style.textAlign = "center";
 		document.getElementById("para11").innerHTML = "<br><br><b>Form a sentence (Declarative or Interrogative or any other type) from the given words</b>";
 		document.getElementById("para22").innerHTML = "<i>(select the buttons in proper order)</i>";
-		var ran2 = Math.floor(Math.random() * 6);
-		var sent = sentence2[ran2][0];
+	    ran = Math.floor(Math.random() * 6);
+		var sent = sentence2[ran][0];
 		var shuf = sent.split(" ");
 		x = shuf.length;
 		n = shuf.length-1;
@@ -217,6 +240,7 @@ function experiment(){
 	document.getElementById("san2").innerHTML = "";
 	document.getElementById("reform").innerHTML = "";
 	document.getElementById("checkcorrect").innerHTML = "";
+	document.getElementById("fin").innerHTML = "";
 }
 function procedure(){
 	document.getElementById("s3").innerHTML = "Procedure";
@@ -230,4 +254,5 @@ function procedure(){
 	document.getElementById("san2").innerHTML = "";
 	document.getElementById("reform").innerHTML = "";
 	document.getElementById("checkcorrect").innerHTML = "";
+	document.getElementById("fin").innerHTML = "";
 }

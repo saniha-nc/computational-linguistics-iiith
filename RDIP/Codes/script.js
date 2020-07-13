@@ -29,6 +29,7 @@ var wordstring ="";
 var ran;
 var answers = document.getElementById("answerlist");
 var anslist = "";
+
 function intro(){
 	document.getElementById("s3").innerHTML = "Introduction";
 	document.getElementById("para1").innerHTML = "A sentence can become more complex, if more than one verb is present or by joining two sentences or words using conjunctions or by some other methods.";
@@ -94,10 +95,8 @@ function quizzes(){
 	answers.innerHTML = "";
 }
 function toggleshow(){
-	if(answers.style.display == 'none'){
-		answers.style.display = "";
-		document.getElementById("fin").innerHTML = "<center><font color ='red'>Wrong Answer!!!</font><br><button id='correctbut' onclick='hideanswerlist();'>Hide Correct Sentence</button></center>";
-	}
+	answers.style.display = "";
+	document.getElementById("fin").innerHTML = "<center><font color ='red'>Wrong Answer!!!</font><br><button id='correctbut' onclick='hideanswerlist();'>Hide Correct Sentence</button></center>";
 }
 function hideanswerlist(){
 	document.getElementById("fin").innerHTML = "<center><font color ='red'>Wrong Answer!!!</font><br><button id='correctbut' onclick='toggleshow();'>Get Answers</button></center>";
@@ -105,6 +104,7 @@ function hideanswerlist(){
 }
 function getanswerlist(){
 	anslist = "";
+	answers.innerHTML = "";
 	var total = 0;
 	if(a == 'english'){
 		total = sentence1[ran].length-1;
@@ -112,6 +112,7 @@ function getanswerlist(){
 		for(i=0;i<=total;i++){
 			anslist += "<center>"+sentence1[ran][i]+"<br></center>"
 		}
+		answers.style.display = "";
 		answers.innerHTML = anslist;
 	}
 	else if(a=='hindi'){
@@ -120,20 +121,22 @@ function getanswerlist(){
 		for(i=0;i<=total;i++){
 			anslist += "<center>"+sentence2[ran][i]+"<br></center>"
 		}
+		answers.style.display = "";
 		answers.innerHTML = anslist;
 	}
 }
 function result(){
 	var ws = wordstring.trim();
 	var final;
-	if(a=='english'){
+	answers.innerHTML = "";
+	if(a == 'english'){
 		final = sentence1[ran].includes(ws);		
 	}
-	else if(a=='hindi'){
+	else if(a == 'hindi'){
 		final = sentence2[ran].includes(ws);
 	}
 	if(final)
-		document.getElementById("fin").innerHTML = "<center><font color ='green'>Right Answer!!!</font><br><button id='correctbut'>Get Correct Sentence</button></center>";
+		document.getElementById("fin").innerHTML = "<center><font color ='green'>Right Answer!!!</font><br></center>";
 	else
 		document.getElementById("fin").innerHTML = "<center><font color ='red'>Wrong Answer!!!</font><br><button id='correctbut' onclick='getanswerlist();'>Get Correct Sentence</button></center>";
 }

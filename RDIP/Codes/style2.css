@@ -86,3 +86,8 @@ h1{
 #para21,#para1{
 	margin: 0px;
 }
+table,td,tr{
+	padding: 8px 10px;
+	border-collapse: collapse;
+	border :1px solid black;
+}

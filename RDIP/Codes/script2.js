@@ -42,13 +42,16 @@ function dropexp(){
 		alert("Select the corpus");
 	}
 	if(s == 'corpus1'){
-		document.getElementById("para1").innerHTML = corpus[0];
+		document.getElementById("para1").innerHTML = corpus[0]+'<br><br><center>Enter the number of tokens and types for the above corpus:<table cellspacing = "-2" style="text-align:center;"><tr><td>#tokens: </td><td><input type="text" id="input1" size="4"></td></tr><tr><td>#types: </td><td><input type="text" id="input2" size="4"></td></tr></table><br></center>';
+		document.getElementById("para21").innerHTML = "<center><button id='submit'>Submit</button></center>";
 	}
 	if(s == 'corpus2'){
-		document.getElementById("para1").innerHTML = corpus[1];
+		document.getElementById("para1").innerHTML = corpus[1]+'<br><br><center>Enter the number of tokens and types for the above corpus:<table cellspacing = "-2" style="text-align:center;"><tr><td>#tokens: </td><td><input type="text" id="input1" size="4"></td></tr><tr><td>#types: </td><td><input type="text" id="input2" size="4"></td></tr></table><br></center>';
+		document.getElementById("para21").innerHTML = "<center><button id='submit'>Submit</button></center>";
 	}
 	if(s == 'corpus3'){
-		document.getElementById("para1").innerHTML = corpus[2];
+		document.getElementById("para1").innerHTML = corpus[2]+'<br><br><center>Enter the number of tokens and types for the above corpus:<table cellspacing = "-2" style="text-align:center;"><tr><td>#tokens: </td><td><input type="text" id="input1" size="4"></td></tr><tr><td>#types: </td><td><input type="text" id="input2" size="4"></td></tr></table><br></center>';
+		document.getElementById("para21").innerHTML = "<center><button id='submit'>Submit</button></center>";
 	}
 }
 function experiment(){

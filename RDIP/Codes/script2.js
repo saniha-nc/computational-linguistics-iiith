@@ -35,7 +35,21 @@ function viewobjec(){
 	document.getElementById("para4").innerHTML = "<br><hr><br>";
 }
 function dropexp(){
-
+	var s = "";
+	s = document.getElementById("drop").value 
+	document.getElementById("para1").innerHTML = "";
+	if(s =='select'){
+		alert("Select the corpus");
+	}
+	if(s == 'corpus1'){
+		document.getElementById("para1").innerHTML = corpus[0];
+	}
+	if(s == 'corpus2'){
+		document.getElementById("para1").innerHTML = corpus[1];
+	}
+	if(s == 'corpus3'){
+		document.getElementById("para1").innerHTML = corpus[2];
+	}
 }
 function experiment(){
 	document.getElementById("image").style.display = "none";

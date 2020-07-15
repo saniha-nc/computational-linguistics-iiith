@@ -1,0 +1,88 @@
+body{
+   padding-right: 8px;
+   padding-left: 100px;
+   background-color: #01284d;
+}
+#heading{
+	background-color: #358CE2;
+	color: white;
+	width: 87%;
+	padding-left: 20px;
+	margin-top: 0px;
+}
+.mid .whitebg .list ul li a{
+	text-decoration: none;
+	color: white;
+	font-size: 19px;
+}
+.mid .whitebg .list ul {
+	list-style: none;
+	padding: 0px;
+}
+.mid .whitebg .list ul li{
+	display: inline;
+}
+h1{
+	font-weight: lighter;
+}
+.mid{
+	background-color: #CCE6F6;
+	margin-right:  128px;
+	padding-left: 24px;
+	font-weight: lighter;
+	padding-top: 3px;
+	color: #434452;
+}
+.list{
+	background-color: white;
+	margin-right: 25px;
+	padding-left: 10px;
+	text-align: left;
+}
+.mid .list button{
+	border:none;
+	text-decoration: underline;
+	background-color: white;
+	color: #0c5f96;
+	cursor: pointer;
+}
+.mid .list button:hover{
+	background-color: #0e6c9c;
+	color: white;
+	padding-bottom: 10px;
+	padding-top: 2px;
+}
+.whitebg{
+	background-color: white;
+	padding-bottom: 280px;
+	margin-right: 25px;
+	padding-left: 15px;
+}
+#para1, #para2, #para21, #para3, #para4, #para5, #para6, #para7{
+	font-size: 18px;
+	font-family:  "Lucida Sans Unicode";
+}
+.mid .list button:focus{
+	background-color: #0e6c9c;
+	color: white;
+	padding-bottom: 10px;
+}
+.mid .whitebg #dropdown{
+	text-align: center;
+}
+.mid .whitebg #s3{
+	font-size: 25px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-family:  "Lucida Sans Unicode";
+}
+#nav li{
+	display: inline;
+}
+#nav a{
+	color: white;
+	text-decoration: none;
+}
+#para21,#para1{
+	margin: 0px;
+}

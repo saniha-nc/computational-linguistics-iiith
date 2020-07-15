@@ -35,6 +35,10 @@ function viewobjec(){
 	document.getElementById("para3").innerHTML = "<br><hr><br>The objective of this experiment is to  impart basic knowledge about the distinction between types and tokens.";
 	document.getElementById("para4").innerHTML = "<br><hr><br>";
 }
+function conti(){
+	document.getElementById("para21").innerHTML = "<center><br>Now, consider all the tokens with the same 'root' word to be of the same type. Recalculate the number of types.<br><br>#new types:<br><input type='text' id='newtype'></center>";
+	document.getElementById("para3").innerHTML = "<center><button id='submit2'>Submit</button></center>";
+}
 function check(){
 	var totaltokens = document.getElementById("input1").value;
 	var totaltypes = document.getElementById("input2").value;
@@ -51,7 +55,7 @@ function check(){
 		document.getElementById("input2").style.backgroundColor = "Red";
 	}
 	if((totaltokens == wc) && (totaltypes == uwc)){
-		document.getElementById("para3").innerHTML = "<center><font color='Green' style='font-size:20px'>Right answer</font><br><br><button id='next' '>Continue</button></center>";
+		document.getElementById("para3").innerHTML = "<center><font color='Green' style='font-size:20px'>Right answer</font><br><br><button id='next' onclick='conti();' '>Continue</button></center>";
 	}
 	else{
 		document.getElementById("para3").innerHTML = "<center><font color='Red' style='font-size:20px'>Wrong answer</font></center>";

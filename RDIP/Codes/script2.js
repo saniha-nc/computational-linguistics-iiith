@@ -1,14 +1,15 @@
 var wc,uwc;
-var corpus = ["A mouse was having a very bad time. She could find no food at all. She looked here and there, but there was no food, and she grew very thin. At last the mouse found a basket, full of corn. There was a small hole in the basket, and she crept in. She could just get through the hole. Then she began to eat the corn. Being very hungry, she ate a great deal, and went on eating and eating. She had grown very fat before she felt that she had had enough. When the mouse tried to climb out of the basket, she could not. She was too fat to pass through the hole. \"How shall I climb out?\" said the mouse. \"oh, how shall I climb out?\" Just then a rat came along, and he heard the mouse. \"Mouse,\" said the rat, \"if you want to climb out of the basket, you must wait till you have grown as thin as you were when you went in.",
-              "A wolf carried off a lamb. The lamb said, \" I know you are going to eat me, but before you eat me I would like to hear you play the flute. I have heard that you can play the flute better than anyone else, even the shepherd himself.\" The wolf was so pleased at this that he took out his flute and began to play. When he had done, the lamb insisted him to play once more and the wolf played again. The shepherd and the dogs heard the sound, and they came running up and fell on the wolf and the lamb was able to get back to the flock.",
-              "A man had a little dog, and he was very fond of it. He would pat its head, and take it on his knee, and talk to it. Then he would give it little bits of food from his own plate. A donkey looked in at the window and saw the man and the dog. \"Why does he not make a pet of me?\" said the donkey. \"It is not fair. I work hard, and the dog only wags its tail, and barks, and jumps on its master's knee. It is not fair.\" Then the donkey said to himself, \"If I do what the dog does, he may make a pet of me.\" So the donkey ran into the room. It brayed as loudly as it could. It wagged its tail so hard that it knocked over a jar on the table. Then it tried to jump on to its master's knee. The master thought the donkey was mad, and he shouted, \"Help! Help!\" Men came running in with sticks, and they beat the donkey till it ran out of the house, and they drove it back to the field. \"I only did what the dog does,\" said the donkey,\" and yet they make a pet of the dog, and they beat me with sticks. It is not fair."]; 
+var s;
+var corpus = ['A mouse was having a very bad time. She could find no food at all. She looked here and there, but there was no food, and she grew very thin. At last the mouse found a basket, full of corn. There was a small hole in the basket, and she crept in. She could just get through the hole. Then she began to eat the corn. Being very hungry, she ate a great deal, and went on eating and eating. She had grown very fat before she felt that she had had enough. When the mouse tried to climb out of the basket, she could not. She was too fat to pass through the hole. "How shall I climb out?" said the mouse. "oh, how shall I climb out?" Just then a rat came along, and he heard the mouse. "Mouse," said the rat, "if you want to climb out of the basket, you must wait till you have grown as thin as you were when you went in.',
+              'A wolf carried off a lamb. The lamb said, "I know you are going to eat me, but before you eat me I would like to hear you play the flute. I have heard that you can play the flute better than anyone else, even the shepherd himself." The wolf was so pleased at this that he took out his flute and began to play. When he had done, the lamb insisted him to play once more and the wolf played again. The shepherd and the dogs heard the sound, and they came running up and fell on the wolf and the lamb was able to get back to the flock.',
+              'A man had a little dog, and he was very fond of it. He would pat its head, and take it on his knee, and talk to it. Then he would give it little bits of food from his own plate. A donkey looked in at the window and saw the man and the dog. "Why does he not make a pet of me?" said the donkey. "It is not fair. I work hard, and the dog only wags its tail, and barks, and jumps on its master\'s knee. It is not fair." Then the donkey said to himself, "If I do what the dog does, he may make a pet of me." So the donkey ran into the room. It brayed as loudly as it could. It wagged its tail so hard that it knocked over a jar on the table. Then it tried to jump on to its master\'s knee. The master thought the donkey was mad, and he shouted, "Help! Help!" Men came running in with sticks, and they beat the donkey till it ran out of the house, and they drove it back to the field. "I only did what the dog does," said the donkey," and yet they make a pet of the dog, and they beat me with sticks. It is not fair.']; 
 //////////////
 
 //var Snowball = require('snowball');
 var stemmer = new Snowball('English');
-stemmer.setCurrent('abbreviations');
-stemmer.stem();
-console.log(stemmer.getCurrent());
+//stemmer.setCurrent('abbreviations');
+//stemmer.stem();
+//console.log(stemmer.getCurrent());
 
 /////////////
 function clearscreen(){
@@ -41,12 +42,37 @@ function viewtheory(){
 function viewobjec(){
 	document.getElementById("image").style.display = "none";
 	document.getElementById("s3").innerHTML = "Objective";
-	document.getElementById("para3").innerHTML = "<br><hr><br>The objective of this experiment is to  impart basic knowledge about the distinction between types and tokens.";
+	document.getElementById("para3").innerHTML = "<br><hr><br><br>The objective of this experiment is to  impart basic knowledge about the distinction between types and tokens.";
 	document.getElementById("para4").innerHTML = "<br><hr><br>";
+}
+function stemit(){
+	var str = "";
+	var str2 = "";
+	if(s == 'corpus1'){
+		str = corpus[0];
+	}
+	if(s == 'corpus2'){
+		str = corpus[1];
+	}
+	if(s == 'corpus3'){
+		str = corpus[2];
+	}
+	str = str.replace(/[^a-zA-Z ]/g, "");
+	str2 = str.toLowerCase();
+	var strarray = str2.split(" ");
+	var stemmed = [];
+	for(i=0; i<strarray.length; i++){
+		stemmer.setCurrent(strarray[i]);
+		stemmer.stem();
+		stemmed[i] = (stemmer.getCurrent());
+	}
+	stemmed = new Set(stemmed);
+	stemmed = Array.from(stemmed);
+	console.log(stemmed);
 }
 function conti(){
 	document.getElementById("para21").innerHTML = "<center><br>Now, consider all the tokens with the same 'root' word to be of the same type. Recalculate the number of types.<br><br>#new types:<br><input type='text' id='newtype'></center>";
-	document.getElementById("para3").innerHTML = "<center><button id='submit2'>Submit</button></center>";
+	document.getElementById("para3").innerHTML = "<center><button id='submit2' onclick='stemit();'>Submit</button></center>";
 }
 function check(){
 	var totaltokens = document.getElementById("input1").value;
@@ -71,17 +97,19 @@ function check(){
 	}
 }
 function tokentype(i){
-	var pat = /\w+/ig;
-	var s = corpus[i].match(pat);
-	wc = s.length; 
-	var s1 = s.join(" ");
-	var s2 = s1.toLowerCase();
-	var str = s2.split(' ');
-	var unique = new Set(str);
+	var s = "";
+	var pat =  /[^a-zA-Z ]/g;
+    s = corpus[i];
+	var s1 = s.toLowerCase();
+	s1 = s1.replace(pat,"");
+	var s12 = s1.split(" ");
+	wc = s12.length;
+	var unique = new Set(s12);
 	uwc = unique.size;
+	document.getElementById("para3").innerHTML = "";
 }
 function dropexp(){
-	var s = "";
+    s = "";
 	s = document.getElementById("drop").value 
 	document.getElementById("para1").innerHTML = "";
 	if(s =='select'){

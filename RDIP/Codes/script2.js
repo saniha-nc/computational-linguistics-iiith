@@ -1,4 +1,5 @@
 var wc,uwc;
+var nc;
 var s;
 var corpus = ['A mouse was having a very bad time. She could find no food at all. She looked here and there, but there was no food, and she grew very thin. At last the mouse found a basket, full of corn. There was a small hole in the basket, and she crept in. She could just get through the hole. Then she began to eat the corn. Being very hungry, she ate a great deal, and went on eating and eating. She had grown very fat before she felt that she had had enough. When the mouse tried to climb out of the basket, she could not. She was too fat to pass through the hole. "How shall I climb out?" said the mouse. "oh, how shall I climb out?" Just then a rat came along, and he heard the mouse. "Mouse," said the rat, "if you want to climb out of the basket, you must wait till you have grown as thin as you were when you went in.',
               'A wolf carried off a lamb. The lamb said, "I know you are going to eat me, but before you eat me I would like to hear you play the flute. I have heard that you can play the flute better than anyone else, even the shepherd himself." The wolf was so pleased at this that he took out his flute and began to play. When he had done, the lamb insisted him to play once more and the wolf played again. The shepherd and the dogs heard the sound, and they came running up and fell on the wolf and the lamb was able to get back to the flock.',
@@ -45,7 +46,18 @@ function viewobjec(){
 	document.getElementById("para3").innerHTML = "<br><hr><br><br>The objective of this experiment is to  impart basic knowledge about the distinction between types and tokens.";
 	document.getElementById("para4").innerHTML = "<br><hr><br>";
 }
+function newtypeverify(count){
+    if(nc == count){
+		alert("Right answer");
+		document.getElementById("newtype").style.backgroundColor = "Green";
+	}
+	else{
+		alert("Wrong answer");
+		document.getElementById("newtype").style.backgroundColor = "Red";
+	}
+}
 function stemit(){
+	nc = document.getElementById("newtype").value;
 	var str = "";
 	var str2 = "";
 	if(s == 'corpus1'){
@@ -75,8 +87,9 @@ function stemit(){
 	}
 	stemmed = new Set(stemmed);
 	stemmed = Array.from(stemmed);
-	console.log(stemmed);
-	alert(stemmed.length);
+	//console.log(stemmed);
+	//alert(stemmed.length);
+	newtypeverify(stemmed.length);
 }
 function conti(){
 	document.getElementById("para21").innerHTML = "<center><br>Now, consider all the tokens with the same 'root' word to be of the same type. Recalculate the number of types.<br><br>#new types:<br><input type='text' id='newtype'></center>";

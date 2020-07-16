@@ -1,0 +1,9 @@
+List of Functionalities:
+
+Missing functionalities:
+1. In the quizzes section, there is no submit button or space to write answer in the page.
+2. We can include a button to check right answer in experiment section.
+
+Observed functionalities:
+1. Submit button in experiment section is checking the correctness of the answer.
+2. It verifies if the answer is correct or not. 

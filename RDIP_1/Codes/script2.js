@@ -48,12 +48,16 @@ function viewobjec(){
 }
 function newtypeverify(count){
     if(nc == count){
-		alert("Right answer");
+		//alert("Right answer");
 		document.getElementById("newtype").style.backgroundColor = "Green";
+		document.getElementById("para8").innerHTML = "<center>Right answer</center>";
+		document.getElementById("para8").style.color = "Green";
 	}
 	else{
-		alert("Wrong answer");
+		//alert("Wrong answer");
 		document.getElementById("newtype").style.backgroundColor = "Red";
+		document.getElementById("para8").innerHTML = "<center>Wrong answer</center>";
+		document.getElementById("para8").style.color = "Red";
 	}
 }
 function stemit(){
@@ -131,24 +135,29 @@ function tokentype(i){
 }
 function dropexp(){
     s = "";
-	s = document.getElementById("drop").value 
-	document.getElementById("para1").innerHTML = "";
+	s = document.getElementById("drop").value;
 	if(s =='select'){
 		alert("Select the corpus");
 	}
 	if(s == 'corpus1'){
+		document.getElementById("para1").innerHTML = "";
+		document.getElementById("para8").innerHTML = "";
 		document.getElementById("para3").innerHTML = "";
 		document.getElementById("para1").innerHTML = corpus[0]+'<br><br><center>Enter the number of tokens and types for the above corpus:<table cellspacing = "-2" style="text-align:center;"><tr><td>#tokens: </td><td><input type="text" id="input1" size="4"></td></tr><tr><td>#types: </td><td><input type="text" id="input2" size="4"></td></tr></table><br></center>';
 		document.getElementById("para21").innerHTML = "<center><button id='submit' onclick='check();'>Submit</button></center>";
 		tokentype(0);
 	}
 	if(s == 'corpus2'){
+		document.getElementById("para1").innerHTML = "";
+		document.getElementById("para8").innerHTML = "";
 		document.getElementById("para3").innerHTML = "";
 		document.getElementById("para1").innerHTML = corpus[1]+'<br><br><center>Enter the number of tokens and types for the above corpus:<table cellspacing = "-2" style="text-align:center;"><tr><td>#tokens: </td><td><input type="text" id="input1" size="4"></td></tr><tr><td>#types: </td><td><input type="text" id="input2" size="4"></td></tr></table><br></center>';
 		document.getElementById("para21").innerHTML = "<center><button id='submit' onclick='check();'>Submit</button></center>";
 		tokentype(1);
 	}
 	if(s == 'corpus3'){
+		document.getElementById("para1").innerHTML = "";
+		document.getElementById("para8").innerHTML = "";
 		document.getElementById("para3").innerHTML = "";
 		document.getElementById("para1").innerHTML = corpus[2]+'<br><br><center>Enter the number of tokens and types for the above corpus:<table cellspacing = "-2" style="text-align:center;"><tr><td>#tokens: </td><td><input type="text" id="input1" size="4"></td></tr><tr><td>#types: </td><td><input type="text" id="input2" size="4"></td></tr></table><br></center>';
 		document.getElementById("para21").innerHTML = "<center><button id='submit' onclick='check();'>Submit</button></center>";

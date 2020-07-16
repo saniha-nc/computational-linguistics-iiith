@@ -61,14 +61,22 @@ function stemit(){
 	str2 = str.toLowerCase();
 	var strarray = str2.split(" ");
 	var stemmed = [];
+	var k=0;
 	for(i=0; i<strarray.length; i++){
-		stemmer.setCurrent(strarray[i]);
-		stemmer.stem();
-		stemmed[i] = (stemmer.getCurrent());
+		if(strarray[i] == 'me' || strarray[i] == 'you' ||strarray[i] == 'can' ||strarray[i] == 'up' ||strarray[i] == 'than' ||strarray[i] == 'the' ||strarray[i] == 'did' ||strarray[i] == 'of' ||strarray[i] == 'very' ||strarray[i] == 'does' ||strarray[i] == 'off' ||strarray[i] == 'to' ){
+			continue;
+		}
+		else{
+			stemmer.setCurrent(strarray[i]);
+			stemmer.stem();
+			stemmed[k] = (stemmer.getCurrent());
+			k++;
+		}
 	}
 	stemmed = new Set(stemmed);
 	stemmed = Array.from(stemmed);
 	console.log(stemmed);
+	alert(stemmed.length);
 }
 function conti(){
 	document.getElementById("para21").innerHTML = "<center><br>Now, consider all the tokens with the same 'root' word to be of the same type. Recalculate the number of types.<br><br>#new types:<br><input type='text' id='newtype'></center>";

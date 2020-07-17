@@ -1,0 +1,100 @@
+body{
+   padding-right: 8px;
+   padding-left: 100px;
+   background-color: #01284d;
+}
+#heading{
+	background-color: #358CE2;
+	color: white;
+	width: 87%;
+	padding-left: 20px;
+	margin-top: 0px;
+}
+.mid .whitebg .list ul li a{
+	text-decoration: none;
+	color: white;
+	font-size: 19px;
+}
+.mid .whitebg .list ul {
+	list-style: none;
+	padding: 0px;
+}
+.mid .whitebg .list ul li{
+	display: inline;
+}
+h1{
+	font-weight: lighter;
+	font-size: 50px;
+}
+.mid{
+	background-color: #CCE6F6;
+	margin-right:  128px;
+	padding-left: 24px;
+	font-weight: lighter;
+	padding-top: 3px;
+	color: #434452;
+}
+.list{
+	background-color: white;
+	margin-right: 25px;
+	padding-left: 10px;
+	text-align: left;
+}
+.mid .list button{
+	border:none;
+	text-decoration: underline;
+	background-color: white;
+	color: #0c5f96;
+	cursor: pointer;
+}
+.mid .list button:hover{
+	background-color: #0e6c9c;
+	color: white;
+	padding-bottom: 10px;
+	padding-top: 2px;
+}
+.whitebg{
+	background-color: white;
+	padding-bottom: 280px;
+	margin-right: 25px;
+	padding-left: 15px;
+}
+#para1, #para2, #para21, #para3, #para4, #para5, #para6, #para7{
+	font-size: 19px;
+	font-family:  "Lucida Sans Unicode";
+}
+.mid .list button:focus{
+	background-color: #0e6c9c;
+	color: white;
+	padding-bottom: 10px;
+}
+.mid .whitebg #dropdown1, #dropdown2{
+	text-align: center;
+}
+.mid .whitebg #s3{
+	font-size: 25px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-family:  "Lucida Sans Unicode";
+}
+#nav li{
+	display: inline;
+}
+#nav a{
+	color: white;
+	text-decoration: none;
+}
+#para6{
+	padding-left: 50px;
+}
+.mid .whitebg table,tr,th,td{
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+.mid .whitebg table tr,td,th{
+	padding: 8px;
+}
+.mid .whitebg table th{
+	color: maroon;
+	font-weight: lighter;
+}

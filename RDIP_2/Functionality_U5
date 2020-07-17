@@ -1,0 +1,6 @@
+Functionalities:
+
+1. Here, We have two dropdowns, one for selecting the language and another for selecting the sentence.
+2. When we select the sentence, the POS table should appear wherein column 3 and 4 are empty.
+3. In each POS row, there are multiple POS tags are available.
+4. After selecting the POS we can verify our answer accordingly.

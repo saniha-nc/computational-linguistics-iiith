@@ -45,13 +45,13 @@ function creation(str){
 	if(s == 'english'){
 		line = "";
 		for(i=0; i<l; i++){
-			line += "<tr><td>"+corpusarray[i]+"</td><td><select><option value='noun'>Noun </option><option value='pronoun'>Pronoun</option><option value='adjective'>Adjective</option><option value='adverb'>Adverb</option><option value='determiner'>Determiner</option><option value='proposition'>Preposition</option><option value='conjunction'>Conjunction</option><option value='interjection'>Interjection</option></select></td><td></td><td></td></tr>"; 
+			line += "<tr><td>"+corpusarray[i]+"</td><td><select><option value='noun' selected>Noun </option><option value='pronoun'>Pronoun</option><option value='adjective'>Adjective</option><option value='adverb'>Adverb</option><option value='determiner'>Determiner</option><option value='proposition'>Preposition</option><option value='conjunction'>Conjunction</option><option value='interjection'>Interjection</option></select></td><td></td><td></td></tr>"; 
 		}
 	}
 	else if(s == 'hindi'){
 		line = "";
 		for(i=0; i<l; i++){
-			line += "<tr><td>"+corpusarray[i]+"</td><td><select><option value='noun'>Noun </option><option value='pronoun'>Pronoun</option><option value='adjective'>Adjective</option><option value='adverb'>Adverb</option><option value='proposition'>Preposition</option><option value='conjunction'>Conjunction</option><option value='interjection'>Interjection</option></select></td><td></td><td></td></tr>"; 
+			line += "<tr><td>"+corpusarray[i]+"</td><td><select><option value='noun' selected>Noun </option><option value='pronoun'>Pronoun</option><option value='adjective'>Adjective</option><option value='adverb'>Adverb</option><option value='proposition'>Preposition</option><option value='conjunction'>Conjunction</option><option value='interjection'>Interjection</option></select></td><td></td><td></td></tr>"; 
 		}
 	}
 	document.getElementById("para5").innerHTML = "<center><table><tr><th>LEXICON</th><th>POS</th><th></th><th></th></tr><tr></td></tr>" + line + "</table></center>";

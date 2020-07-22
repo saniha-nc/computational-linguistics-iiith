@@ -3,6 +3,10 @@ body{
    padding-left: 100px;
    background-color: #01284d;
 }
+::selection {
+  color: white;
+  background: #eb5e85;
+}
 #heading{
 	background-color: #358CE2;
 	color: white;
@@ -11,6 +15,7 @@ body{
 	margin-top: 0px;
 }
 .mid .whitebg .list ul li a{
+	height: 200px;
 	text-decoration: none;
 	color: white;
 	font-size: 19px;
@@ -41,17 +46,17 @@ h1{
 	text-align: left;
 }
 .mid .list button{
+	height: 100px;
 	border:none;
 	text-decoration: underline;
 	background-color: white;
 	color: #0c5f96;
-	cursor: pointer;
+	border-radius: 0px;
 }
 .mid .list button:hover{
 	background-color: #0e6c9c;
 	color: white;
-	padding-bottom: 10px;
-	padding-top: 2px;
+	border-radius: 0px;
 }
 .whitebg{
 	background-color: white;
@@ -66,7 +71,6 @@ h1{
 .mid .list button:focus{
 	background-color: #0e6c9c;
 	color: white;
-	padding-bottom: 10px;
 }
 .mid .whitebg #dropdown1, #dropdown2{
 	text-align: center;

@@ -5,7 +5,19 @@ var taggedWords;
 var array = [];
 var sent; 
 var str;
-var count;
+var count, f=0;
+var anslist;
+
+var n = ["NN","NNP","NNPS","NNS"];
+var p = ["PRP$","PRP","WP"];
+var v = ["VB","VBD","VBG","VBN","VBP","VBZ"];
+var adj = ["JJ","JJS","JJR"];
+var adv = ["RB","RBR","RBS","WRB"];
+var det = ["DT","PDT","WDT"];
+var pre = ["IN"];
+var conj = ["CC"];
+var int = ["UH"];
+
 var corpus = [["The child liked the chocolate.","She was stopped by the bravest knight.","Mary baked a cake for his birthday","She decorated the cake carefully","Mary wore a dress with polka dots."],
           ["राम ने सीता के लिए फल तोड़ा।","छोटे बच्चे पाठशाला जल्दी आयेंगे।","मेहनत का फल मीठा होता है।","वाह! वह खूबसूरत है।","पेड़ से पत्ते गिर गए।"]];
 
@@ -56,6 +68,57 @@ function viewobjec(){
 	document.getElementById("s3").innerHTML = "Objective";
 	document.getElementById("para3").innerHTML = "<br><hr><br><br>The objective of this experiment is to test the knowledge of basic part of speech of words as they appear in a sentence.";
 	document.getElementById("para4").innerHTML = "<br><hr><br>";
+}
+function toggle(){
+    document.getElementById("para8").innerHTML = "<br><center><button id='ansget' onclick='showans();'>Get Answers</button></center>";
+    i = 0;
+    while(i < array.length){
+        document.getElementById("ansrow"+i).innerHTML = "";
+        i++;
+    }
+}
+function showans(){
+    if(s == 'english'){
+        i=0;
+        while(i < array.length){
+            if(n.includes(anslist[i])){
+                document.getElementById('ansrow'+i).innerHTML = "Noun"
+            }
+            if(p.includes(anslist[i])){
+                document.getElementById('ansrow'+i).innerHTML = "Pronoun"
+            }
+            if(v.includes(anslist[i])){
+                document.getElementById('ansrow'+i).innerHTML = "Verb"
+            }
+            if(adj.includes(anslist[i])){
+                document.getElementById('ansrow'+i).innerHTML = "Adjective"
+            }
+            if(adv.includes(anslist[i])){
+                document.getElementById('ansrow'+i).innerHTML = "Adverb"
+            }
+            if(det.includes(anslist[i])){
+                document.getElementById('ansrow'+i).innerHTML = "Determiner"
+            }
+            if(pre.includes(anslist[i])){
+                document.getElementById('ansrow'+i).innerHTML = "Preposition"
+            }
+            if(conj.includes(anslist[i])){
+                document.getElementById('ansrow'+i).innerHTML = "Conjunction"
+            }
+            if(int.includes(anslist[i])){
+                document.getElementById('ansrow'+i).innerHTML = "Interjection"
+            }
+            i++;
+        }
+    }
+    if(s == 'hindi'){
+        i=0;
+        while(i<array.length){
+            document.getElementById('ansrow'+i).innerHTML = anslist[i]; 
+            i++;       
+        }
+    }
+    document.getElementById("para8").innerHTML = "<br><center><button id='ansget' onclick='toggle();'>Hide Answers</button></center>";
 }
 function correctness(selopt,tg){
 	if(selopt == "noun"){
@@ -139,12 +202,12 @@ function correctness(selopt,tg){
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
         }
     }
-
 }
 function check(){
 	var selopt;
     if(s == 'english'){
         count = 0;
+        anslist = [];
         selopt = "";
         words = new pos.Lexer().lex(str);
         tagger = new pos.Tagger();
@@ -159,6 +222,7 @@ function check(){
                 tg = taggedWord[1];
                 if(j < array.length){
                     selopt = document.getElementById("x"+j).value; 
+                    anslist[i] = tg;
                     correctness(selopt,tg);
                     j++;
                 }
@@ -169,7 +233,8 @@ function check(){
                 taggedWord = taggedWords[i];
                 word = taggedWord[0];
                 tg = taggedWord[1];
-                selopt = document.getElementById("x"+i).value;  
+                selopt = document.getElementById("x"+i).value;
+                anslist[i] = tg;  
                 correctness(selopt,tg);
             }
         }
@@ -178,8 +243,10 @@ function check(){
         count = 0;
         selopt = "";
         array = str.split(" ");
+        anslist = [];
         if(sent == 'hin1'){
             count = 0;
+            anslist = ["Noun","Postposition","Noun","Postposition","Postposition","Noun","Verb"];
             selopt = document.getElementById("x0").value;
             if(selopt == 'noun'){
                 count++;
@@ -246,6 +313,7 @@ function check(){
 
         if(sent == 'hin2'){
             count = 0;
+            anslist = ["Adjective","Noun","Noun","Adverb","Verb"];
             selopt = document.getElementById('x0').value;
             if(selopt == 'adjective'){
                 count++;
@@ -293,6 +361,7 @@ function check(){
         }
         if(sent == "hin3"){
             count = 0;
+            anslist = ["Noun","Postposition","Noun","Adjective","Verb","Verb"];
             selopt = document.getElementById('x0').value;
             if(selopt == 'noun'){
                 count++;
@@ -349,7 +418,8 @@ function check(){
             }
 
             if(sent == "hin4"){
-                count = 0;
+            count = 0;
+            anslist = ["Interjection","Pronoun","Adjective","Verb"];
             selopt = document.getElementById('x0').value;
             if(selopt == 'interjection'){
                 count++;
@@ -389,6 +459,7 @@ function check(){
 
             if(sent == "hin5"){
             count = 0;
+             anslist = ["Noun","Postposition","Noun","Verb","Verb"];
             selopt = document.getElementById('x0').value;
             if(selopt == "noun"){
                 count++;
@@ -436,14 +507,16 @@ function check(){
         }
     }
     if(count != array.length){
-        document.getElementById("para8").innerHTML = "<br><center><button id='ansget'>Get Answers</button></center>";
+        f++;
+        document.getElementById("para8").innerHTML = "<br><center><button id='ansget' onclick='showans();'>Get Answers</button></center>";
     }
     else{
-        document.getElementById("para8").innerHTML = "";
+        if(f == 0)
+            document.getElementById("para8").innerHTML = "";
     }
 }
 function creation(str1){
-      document.getElementById("para8").innerHTML = "";
+   document.getElementById("para8").innerHTML = "";
     str = "";
     document.getElementById("para5").innerHTML = "";
     var line = "";
@@ -453,14 +526,18 @@ function creation(str1){
     var l = corpusarray.length;
     if(s == 'english'){
         line = "";
-        for(i=0; i<l; i++){
-            line += "<tr><td>"+corpusarray[i]+"</td><td><select id='x"+i+"'><option value='noun' selected>Noun </option><option value='pronoun'>Pronoun</option><option value='verb'>Verb</option><option value='adjective'>Adjective</option><option value='adverb'>Adverb</option><option value='determiner'>Determiner</option><option value='proposition'>Preposition</option><option value='conjunction'>Conjunction</option><option value='interjection'>Interjection</option></select></td><td id=tk"+i+" width='60px'></td><td width='40px'></td></tr>"; 
+        i = 0;
+        while(i<l){
+            line += "<tr><td>"+corpusarray[i]+"</td><td><select id='x"+i+"'><option value='noun' selected>Noun </option><option value='pronoun'>Pronoun</option><option value='verb'>Verb</option><option value='adjective'>Adjective</option><option value='adverb'>Adverb</option><option value='determiner'>Determiner</option><option value='preposition'>Preposition</option><option value='conjunction'>Conjunction</option><option value='interjection'>Interjection</option></select></td><td id=tk"+i+" width='60px'></td><td width='40px' id='ansrow"+i+"'></td></tr>"; 
+            i++;
         }
     }
     else if(s == 'hindi'){
         line = "";
-        for(i=0; i<l; i++){
-            line += "<tr><td>"+corpusarray[i]+"</td><td><select id='x"+i+"'><option value='noun' selected>Noun </option><option value='pronoun'>Pronoun</option><option value='verb'>Verb</option><option value='adjective'>Adjective</option><option value='adverb'>Adverb</option><option value='postposition'>Postposition</option><option value='conjunction'>Conjunction</option><option value='interjection'>Interjection</option></select></td><td id=tk"+i+" width='60px'></td><td width='40px'></td></tr>";
+        i=0;
+        while(i<l){
+            line += "<tr><td>"+corpusarray[i]+"</td><td><select id='x"+i+"'><option value='noun' selected>Noun </option><option value='pronoun'>Pronoun</option><option value='verb'>Verb</option><option value='adjective'>Adjective</option><option value='adverb'>Adverb</option><option value='postposition'>Postposition</option><option value='conjunction'>Conjunction</option><option value='interjection'>Interjection</option></select></td><td id=tk"+i+" width='60px'></td><td width='40px' id='ansrow"+i+"'></td></tr>";
+            i++;
         }
     }
     document.getElementById("para5").innerHTML = "<center><table><tr><th>LEXICON</th><th>POS</th><th></th><th></th></tr>" + line + "</table></center>";
@@ -468,67 +545,67 @@ function creation(str1){
 }
 function displaytable(id){
 	document.getElementById("para4").innerHTML = "<center><i><font color='Blue'>Select the POS tag for corresponding words</font></i></center>";
-	var sent = "";
-	if(id == 'englishdrop'){
+    sent = "";
+    if(id == 'englishdrop'){
         document.getElementById("para8").innerHTML = "";
-		sent = document.getElementById(id).value;
-		if(sent == 'sen1'){
-			creation(corpus[0][0]);
-		}
-		if(sent == 'sen2'){
-			creation(corpus[0][1]);
-		}
-		if(sent == 'sen3'){
-			creation(corpus[0][2]);
-		}
-		if(sent == 'sen4'){
-			creation(corpus[0][3]);
-		}
-		if(sent == 'sen5'){
-			creation(corpus[0][4]);
-		}
-	}
-	if(id == 'hindidrop'){
+        sent = document.getElementById(id).value;
+        if(sent == 'sen1'){
+            creation(corpus[0][0]);
+        }
+        if(sent == 'sen2'){
+            creation(corpus[0][1]);
+        }
+        if(sent == 'sen3'){
+            creation(corpus[0][2]);
+        }
+        if(sent == 'sen4'){
+            creation(corpus[0][3]);
+        }
+        if(sent == 'sen5'){
+            creation(corpus[0][4]);
+        }
+    }
+    if(id == 'hindidrop'){
         document.getElementById("para8").innerHTML = "";
-		sent = document.getElementById(id).value;
-		if(sent == 'hin1'){
-			creation(corpus[1][0]);
-		}
-		if(sent == 'hin2'){
-			creation(corpus[1][1]);
-		}
-		if(sent == 'hin3'){
-			creation(corpus[1][2]);
-		}
-		if(sent == 'hin4'){
-			creation(corpus[1][3]);
-		}
-		if(sent == 'hin5'){
-			creation(corpus[1][4]);
-		}
-	}
+        sent = document.getElementById(id).value;
+        if(sent == 'hin1'){
+            creation(corpus[1][0]);
+        }
+        if(sent == 'hin2'){
+            creation(corpus[1][1]);
+        }
+        if(sent == 'hin3'){
+            creation(corpus[1][2]);
+        }
+        if(sent == 'hin4'){
+            creation(corpus[1][3]);
+        }
+        if(sent == 'hin5'){
+            creation(corpus[1][4]);
+        }
+    }
 }
 function droplang(){
     s = "";
-	s = document.getElementById("drop1").value;
-	if(s == 'select1'){
-		alert("Please select any language");
-		document.getElementById("dropdown2").innerHTML = "";
-	}
-	if(s == 'english'){
+    s = document.getElementById("drop1").value;
+    if(s == 'select1'){
+        alert("Please select any language");
+        document.getElementById("dropdown2").innerHTML = "";
+    }
+    if(s == 'english'){
         document.getElementById("para8").innerHTML = "";
-		document.getElementById("para5").innerHTML = "";
-		document.getElementById("para6").innerHTML = "";
-		document.getElementById("para4").innerHTML = "";
-		document.getElementById("dropdown2").innerHTML = "<select id='englishdrop' onchange='displaytable(this.id);'><option value='select2'>---Select a sentence--- </option><option value='sen1'>"+corpus[0][0]+"</option><option value='sen2'>"+corpus[0][1]+"</option><option value='sen3'>"+corpus[0][2]+"</option><option value='sen4'>"+corpus[0][3]+"</option><option value='sen5'>"+corpus[0][4]+"</option></select>";
-	}
-	if(s == 'hindi'){
+        document.getElementById("para5").innerHTML = "";
+        document.getElementById("para6").innerHTML = "";
+        document.getElementById("para4").innerHTML = "";
+        document.getElementById("dropdown2").innerHTML = "<select id='englishdrop' onchange='displaytable(this.id);'><option value='select2'>---Select a sentence--- </option><option value='sen1'>"+corpus[0][0]+"</option><option value='sen2'>"+corpus[0][1]+"</option><option value='sen3'>"+corpus[0][2]+"</option><option value='sen4'>"+corpus[0][3]+"</option><option value='sen5'>"+corpus[0][4]+"</option></select>";
+    }
+    if(s == 'hindi'){
         document.getElementById("para8").innerHTML = "";
-		document.getElementById("para5").innerHTML = "";
-		document.getElementById("para6").innerHTML = "";
-		document.getElementById("para4").innerHTML = "";
-		document.getElementById("dropdown2").innerHTML = "<select id='hindidrop' onchange='displaytable(this.id);'><option value='select3'>---Select a sentence--- </option><option value='hin1'>"+corpus[1][0]+"</option><option value='hin2'>"+corpus[1][1]+"</option><option value='hin3'>"+corpus[1][2]+"</option><option value='hin4'>"+corpus[1][3]+"</option><option value='hin5'>"+corpus[1][4]+"</option></select>";
-	}
+        document.getElementById("para5").innerHTML = "";
+        document.getElementById("para6").innerHTML = "";
+        document.getElementById("para4").innerHTML = "";
+        document.getElementById("dropdown2").innerHTML = "<select id='hindidrop' onchange='displaytable(this.id);'><option value='select3'>---Select a sentence--- </option><option value='hin1'>"+corpus[1][0]+"</option><option value='hin2'>"+corpus[1][1]+"</option><option value='hin3'>"+corpus[1][2]+"</option><option value='hin4'>"+corpus[1][3]+"</option><option value='hin5'>"+corpus[1][4]+"</option></select>";
+    }
 }
 function experiment(){
 	document.getElementById("image").style.display = "none";
@@ -544,8 +621,8 @@ function quizzes(){
 }
 function procedure(){
 	document.getElementById("image").style.display = "none";
-	document.getElementById("s3").innerHTML = "Procedure";
-	document.getElementById("para3").innerHTML = "<u><b>STEP1:</b></u>  Select a language from the drop down menu.<br><u><b>STEP2:</b></u> Select a sentence from the drop down menu.<br><u><b>STEP3:</b></u> Select corresponding POS for each word in the sentence and and click the <button>Submit</button> button. <br><u><b>OUTPUT1:</b></u>The submitted answer will be checked.<br><u><b>STEP4:</b></u> If incorrect, click on <button>Get Answer</button> button for the correct answer or repeat STEP3. ";
+    document.getElementById("s3").innerHTML = "Procedure";
+    document.getElementById("para3").innerHTML = "<u><b>STEP1:</b></u>  Select a language from the drop down menu.<br><u><b>STEP2:</b></u> Select a sentence from the drop down menu.<br><u><b>STEP3:</b></u> Select corresponding POS for each word in the sentence and and click the <button>Submit</button> button. <br><u><b>OUTPUT1:</b></u> The submitted answer will be checked.<br><u><b>STEP4:</b></u> If incorrect, click on <button>Get Answer</button> button for the correct answer or repeat STEP3.<br><br><hr> ";
 }
 function furtherreading(){
 	document.getElementById("image").style.display = "none";

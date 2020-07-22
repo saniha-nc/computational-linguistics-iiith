@@ -5,6 +5,7 @@ var taggedWords;
 var array = [];
 var sent; 
 var str;
+var count;
 var corpus = [["The child liked the chocolate.","She was stopped by the bravest knight.","Mary baked a cake for his birthday","She decorated the cake carefully","Mary wore a dress with polka dots."],
           ["राम ने सीता के लिए फल तोड़ा।","छोटे बच्चे पाठशाला जल्दी आयेंगे।","मेहनत का फल मीठा होता है।","वाह! वह खूबसूरत है।","पेड़ से पत्ते गिर गए।"]];
 
@@ -60,6 +61,7 @@ function correctness(selopt,tg){
 	if(selopt == "noun"){
         if(tg == "NN" || tg == "NNP" || tg == "NNPS" || tg == "NNS" ){
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+            count++;
         }
         else{
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
@@ -68,6 +70,7 @@ function correctness(selopt,tg){
     else if(selopt == "pronoun"){
         if(tg == "PRP$" || tg == "PRP" || tg == "WP"){
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+            count++;
         }
         else{
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
@@ -76,6 +79,7 @@ function correctness(selopt,tg){
     else if(selopt == "verb"){        
         if(tg == "VB" || tg == "VBD" || tg == "VBG" || tg == "VBN" || tg == "VBP" || tg == "VBZ"){
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+            count++;
         }
         else{
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
@@ -84,6 +88,7 @@ function correctness(selopt,tg){
     else if(selopt == "adjective"){
         if(tg == "JJ" || tg == "JJS" || tg == "JJR"){
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+            count++;
         }
         else{
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
@@ -92,6 +97,7 @@ function correctness(selopt,tg){
     else if(selopt == "adverb"){
         if(tg == "RB" || tg == "RBR" || tg == "RBS" || tg == "WRB"){
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+            count++;
         }
         else{
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
@@ -100,6 +106,7 @@ function correctness(selopt,tg){
     else if(selopt == "determiner"){
         if(tg == "DT" || tg == "PDT" || tg == "WDT"){
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+            count++;
         }
         else{
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
@@ -108,6 +115,7 @@ function correctness(selopt,tg){
     else if(selopt == "preposition"){
         if(tg == "IN"){
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+            count++;
         }
         else{
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
@@ -116,6 +124,7 @@ function correctness(selopt,tg){
     else if(selopt == "conjunction"){
         if(tg == "CC"){
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+            count++;
         }
         else{
             document.getElementById('tick'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
@@ -124,6 +133,7 @@ function correctness(selopt,tg){
     else if(selopt == "interjection"){
         if(tg == "UH"){
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
+            count++;
         }
         else{
             document.getElementById('tk'+i).innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
@@ -132,8 +142,9 @@ function correctness(selopt,tg){
 
 }
 function check(){
-	 var selopt;
+	var selopt;
     if(s == 'english'){
+        count = 0;
         selopt = "";
         words = new pos.Lexer().lex(str);
         tagger = new pos.Tagger();
@@ -164,181 +175,275 @@ function check(){
         }
     }
     if(s == 'hindi'){
+        count = 0;
         selopt = "";
         array = str.split(" ");
         if(sent == 'hin1'){
+            count = 0;
             selopt = document.getElementById("x0").value;
             if(selopt == 'noun'){
+                count++;
                 document.getElementById('tk0').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            }else
+            }
+            else{
                 document.getElementById('tk0').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x1').value;
-            if(selopt == 'postposition')
+            if(selopt == 'postposition'){
+                count++;
                 document.getElementById('tk1').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk1').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x2').value;
-            if(selopt == 'noun')
+            if(selopt == 'noun'){
+                count++;
                 document.getElementById('tk2').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk2').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x3').value;
-            if(selopt == 'postposition')
+            if(selopt == 'postposition'){
+                count++;
                 document.getElementById('tk3').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk3').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x4').value;
-            if(selopt == 'postposition')
+            if(selopt == 'postposition'){
+                count++;
                 document.getElementById('tk4').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk4').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x5').value;
-            if(selopt == 'noun')
+            if(selopt == 'noun'){
+                count++;
                 document.getElementById('tk5').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk5').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x6').value;
-            if(selopt == 'verb')
+            if(selopt == 'verb'){
+                count++;
                 document.getElementById('tk6').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk6').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
         }
 
         if(sent == 'hin2'){
+            count = 0;
             selopt = document.getElementById('x0').value;
-            if(selopt == 'adjective')
+            if(selopt == 'adjective'){
+                count++;
                 document.getElementById('tk0').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk0').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x1').value;
-            if(selopt == 'noun')
+            if(selopt == 'noun'){
+                count++;
                 document.getElementById('tk1').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk1').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x2').value;
-            if(selopt == 'noun')
+            if(selopt == 'noun'){
+                count++;
                 document.getElementById('tk2').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk2').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x3').value;
-            if(selopt == 'adverb')
+            if(selopt == 'adverb'){
+                count++;
                 document.getElementById('tk3').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk3').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x4').value;
-            if(selopt == 'verb')
+            if(selopt == 'verb'){
+                count++;
                 document.getElementById('tk4').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk4').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
         }
         if(sent == "hin3"){
+            count = 0;
             selopt = document.getElementById('x0').value;
-            if(selopt == 'noun')
+            if(selopt == 'noun'){
+                count++;
                 document.getElementById('tk0').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk0').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x1').value;
-            if(selopt == 'postposition')
+            if(selopt == 'postposition'){
+                count++;
                 document.getElementById('tk1').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk1').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x2').value;
-            if(selopt == "noun")
+            if(selopt == "noun"){
+                count++;
                 document.getElementById('tk2').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk2').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
-
+            }
+            
             selopt = document.getElementById('x3').value;
-            if(selopt == 'adjective')
+            if(selopt == 'adjective'){
+                count++;
                 document.getElementById('tk3').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk3').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x4').value;
-            if(selopt == 'verb')
+            if(selopt == 'verb'){
+                count++;
                 document.getElementById('tk4').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk4').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x5').value;
-            if(selopt == 'verb')
+            if(selopt == 'verb'){
+                count++;
                 document.getElementById('tk5').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk5').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
             }
 
             if(sent == "hin4"){
+                count = 0;
             selopt = document.getElementById('x0').value;
-            if(selopt == 'interjection')
+            if(selopt == 'interjection'){
+                count++;
                 document.getElementById('tk0').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk0').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x1').value;
-            if(selopt == 'pronoun')
+            if(selopt == 'pronoun'){
+                count++;
                 document.getElementById('tk1').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk1').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x2').value;
-            if(selopt == 'adjective')
+            if(selopt == 'adjective'){
+                count++;
                 document.getElementById('tk2').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk2').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x3').value;
-            if(selopt == "verb")
+            if(selopt == "verb"){
+                count++;
                 document.getElementById('tk3').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk3').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
             }
 
             if(sent == "hin5"){
+            count = 0;
             selopt = document.getElementById('x0').value;
-            if(selopt == "noun")
+            if(selopt == "noun"){
+                count++;
                 document.getElementById('tk0').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk0').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x1').value;
-            if(selopt == "postposition")
+            if(selopt == "postposition"){
+                count++;
                 document.getElementById('tk1').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk1').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x2').value;
-            if(selopt == "noun")
+            if(selopt == "noun"){
+                count++;
                 document.getElementById('tk2').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk2').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x3').value;
-            if(selopt == "verb")
+            if(selopt == "verb"){
+                count++;
                 document.getElementById('tk3').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk3').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
 
             selopt = document.getElementById('x4').value;
-            if(selopt == "verb")
+            if(selopt == "verb"){
+                count++;
                 document.getElementById('tk4').innerHTML = "<img class='ans' src='../../src/lab/exp7/right.png' alt='Correct' width='30px' height='30px'>";
-            else
+            }
+            else{
                 document.getElementById('tk4').innerHTML = "<img class='ans' src='../../src/lab/exp7/wrong.png' alt='Wrong' width='30px' height='30px'>";
+            }
         }
+    }
+    if(count != array.length){
+        document.getElementById("para8").innerHTML = "<br><center><button id='ansget'>Get Answers</button></center>";
+    }
+    else{
+        document.getElementById("para8").innerHTML = "";
     }
 }
 function creation(str1){
+      document.getElementById("para8").innerHTML = "";
     str = "";
     document.getElementById("para5").innerHTML = "";
     var line = "";
@@ -365,6 +470,7 @@ function displaytable(id){
 	document.getElementById("para4").innerHTML = "<center><i><font color='Blue'>Select the POS tag for corresponding words</font></i></center>";
 	var sent = "";
 	if(id == 'englishdrop'){
+        document.getElementById("para8").innerHTML = "";
 		sent = document.getElementById(id).value;
 		if(sent == 'sen1'){
 			creation(corpus[0][0]);
@@ -383,6 +489,7 @@ function displaytable(id){
 		}
 	}
 	if(id == 'hindidrop'){
+        document.getElementById("para8").innerHTML = "";
 		sent = document.getElementById(id).value;
 		if(sent == 'hin1'){
 			creation(corpus[1][0]);
@@ -409,12 +516,14 @@ function droplang(){
 		document.getElementById("dropdown2").innerHTML = "";
 	}
 	if(s == 'english'){
+        document.getElementById("para8").innerHTML = "";
 		document.getElementById("para5").innerHTML = "";
 		document.getElementById("para6").innerHTML = "";
 		document.getElementById("para4").innerHTML = "";
 		document.getElementById("dropdown2").innerHTML = "<select id='englishdrop' onchange='displaytable(this.id);'><option value='select2'>---Select a sentence--- </option><option value='sen1'>"+corpus[0][0]+"</option><option value='sen2'>"+corpus[0][1]+"</option><option value='sen3'>"+corpus[0][2]+"</option><option value='sen4'>"+corpus[0][3]+"</option><option value='sen5'>"+corpus[0][4]+"</option></select>";
 	}
 	if(s == 'hindi'){
+        document.getElementById("para8").innerHTML = "";
 		document.getElementById("para5").innerHTML = "";
 		document.getElementById("para6").innerHTML = "";
 		document.getElementById("para4").innerHTML = "";
